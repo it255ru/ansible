@@ -1,0 +1,12 @@
+[group_k8smaster]
+master1 ansible_host=k8master1
+
+[group_k8sworker]
+worker1 ansible_host=k8worker1
+worker2 ansible_host=k8worker2
+
+[group_k8smaster:vars]
+ansible_user=master
+
+[group_k8sworker:vars]
+ansible_user=worker

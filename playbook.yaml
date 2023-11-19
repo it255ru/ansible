@@ -1,0 +1,9 @@
+- hosts: '{{ target }}'
+  tasks:
+   - name: ping all hosts
+     ping: ~
+     become: true
+     become_user: root
+  roles:
+    - displayvars
+    - basic_linux_system
