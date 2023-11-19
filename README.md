@@ -20,7 +20,7 @@ This project contains [ansible](http://docs.ansible.com/ansible) playbook to dow
  - Run the playbook for group vm :
 
       ```
-      d ansible
+      cd ansible
       ansible-playbook -i envs/ playbook.yaml --extra-vars "target=group_k8smaster" -K -v
       ```   
 
