@@ -23,12 +23,22 @@
 5. `sudo reboot` и можно подключится теперь с Termius ssh client стенда на windows
 
 ## Подготовка эталонной VM c стенда на windows
-1. `ssh-copy-id ubuntu@111.111.11.111`
-2. `ssh ubuntu@111.111.11.111`
-3. `sudo -i` & `apt update -y` & `apt upgrade -y` & `reboot`
-4. `apt install git` & `git clone %THIS_REPOSITORY%` & `cd %THIS_REPOSITORY%`
-5. Редактируем под себя `./inventory/k8s-hosts.yml` и `./playbook.yml`
-6. `ansible-playbook -l 111.111.11.111 k8sinfra.yml`
+1. В `c:\windows\system32\drivers\etc\hosts` добавить информацию из `windows-etc-hosts/hosts`
+2. `ssh-copy-id ubuntu@k8sinfra01`
+3. `ssh ubuntu@k8sinfra01` Пароль: `ubuntu`
+4. `sudo -i` & `apt update -y` & `apt upgrade -y`
+5. `mv /etc/machine-id /etc/machine-id.bak ` & `dbus-uuidgen --ensure=/etc/machine-id` & `reboot`
+6. `apt install git` & `git clone %THIS_REPOSITORY%` & `cd %THIS_REPOSITORY%`
+7. `sudo sh install-ansible.sh`
+8. `ansible-playbook -i localhost getinfo.yml`
+   
+
+   
+6. Редактируем `./inventory/all-hosts`.
+7. 
+8.  `ansible-playbook -i inventory/all-hosts getinfo.yml`
+
+Reset machine_id
 
 # Настройка VM Infra с стенда на windows
 1. На vm infra создается ssh-key и раскидывается новый ключ на 3 master + 2 worker
@@ -51,11 +61,7 @@
 5. 
 
 # Настройки которые требуется отредактировать
-1. Отредактировать inventory/k8s-hosts.yml
-2. Отредактировать playbook.yml
+1. inventory/k8s-hosts.yml
+2. inventory/all-hosts
+3. playbook.yml
 
-# Запустите ваш Playbook с помощью команды ansible-playbook:
-
-```bash
-ansible-playbook -i inventory/k8s-hosts.yml playbook.yml
-```

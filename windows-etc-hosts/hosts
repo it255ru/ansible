@@ -1,0 +1,7 @@
+192.168.2.51 k8sinfra01 k8sinfra01.lab
+192.168.2.41 k8smaster01 k8smaster01.lab
+192.168.2.42 k8smaster02 k8smaster02.lab
+192.168.2.43 k8smaster03 k8smaster03.lab
+
+192.168.2.44 k8sworker01 k8sworker01.lab
+192.168.2.45 k8sworker02 k8sworker02.lab

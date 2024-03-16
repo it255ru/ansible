@@ -1,0 +1,89 @@
+---
+- name: Gather system information
+  # hosts: all
+  hosts: localhost
+  # inventory add: [target_group] host1 ansible_host=IP
+  tasks:
+    - name: Display hostname
+      ansible.builtin.shell: hostname
+      register: hostname_output
+
+    - name: Display /etc/hosts content
+      ansible.builtin.shell: cat /etc/hosts
+      register: hosts_output
+
+    - name: Display system timezone
+      ansible.builtin.shell: timedatectl | grep "Time zone"
+      register: timezone_output
+
+    - name: Display current date and time
+      ansible.builtin.shell: date
+      register: date_output
+
+    - name: Display netplan configuration
+      ansible.builtin.shell: cat /etc/netplan/*.yaml
+      register: netplan_config
+
+    - name: Output gathered information
+      ansible.builtin.debug:
+        msg: |
+          Hostname: {{ hostname_output.stdout }}
+          /etc/hosts content: {{ hosts_output.stdout }}
+          Timezone: {{ timezone_output.stdout }}
+          Date: {{ date_output.stdout }}
+          Netplan configuration: {{ netplan_config.stdout }}
+          ===================================
+        vars:
+          combined_file_content: |
+            {{ hostname_output_content }}
+
+            {{ hosts_output_content }}
+
+---
+- name: Gather system information
+  # hosts: all
+  hosts: localhost
+  # inventory add: [target_group] host1 ansible_host=IP
+  tasks:
+    - name: Display hostname
+      ansible.builtin.shell: hostname
+      register: hostname_output
+
+    - name: Display /etc/hosts content
+      ansible.builtin.shell: cat /etc/hosts
+      register: hosts_output
+
+    - name: Display system timezone
+      ansible.builtin.shell: timedatectl | grep "Time zone"
+      register: timezone_output
+
+    - name: Display current date and time
+      ansible.builtin.shell: date
+      register: date_output
+
+    - name: Display netplan configuration
+      ansible.builtin.shell: cat /etc/netplan/*.yaml
+      register: netplan_config
+
+    - name: Display report
+      ansible.builtin.debug:
+        msg: |
+          ===================================
+          Report:
+          -----------------------------------
+          Hostname: {{ ansible_hostname }}
+          IP Address: {{ ansible_default_ipv4.address }}
+          OS Distribution: {{ ansible_distribution }}
+          OS Version: {{ ansible_distribution_version }}
+          -----------------------------------
+          Some additional information:
+          {% for item in additional_info %}
+          - {{ item }}
+          {% endfor %}
+          ===================================
+      vars:
+        additional_info:
+          - Item 1
+          - Item 2
+          - Item 3
+

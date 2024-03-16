@@ -1,0 +1,17 @@
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+  children:
+    k8smaster:
+      hosts:
+        k8smaster01:
+          ansible_host: 192.168.2.41
+        k8smaster02:
+          ansible_host: 192.168.2.42
+        k8smaster03:
+          ansible_host: 192.168.2.43
+        k8sworker01:
+          ansible_host: 192.168.2.44
+        k8sworker02:
+          ansible_host: 192.168.2.45
