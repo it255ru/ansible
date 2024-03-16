@@ -1,0 +1,6 @@
+---
+- name: Copy sshd_config file
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+  notify: Reload SSH service

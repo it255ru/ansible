@@ -1,0 +1,15 @@
+---
+- name: Create seadmin user
+  user:
+    name: seadmin
+    password: "$6$rounds=656000$g2igCzcJDKG3MIYo$1x4hQ1D1rZoNuI1KUf0qW4ndHhRZzUcOZGf9jym/Oh7YXOBqM47TJD/F6uc1BjQeA1BR6W2l5S6h4jnAfkC3S1"  # Encrypted password
+    shell: /bin/bash
+    state: present
+
+- name: Add seadmin to sudoers file
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/seadmin
+    owner: root
+    group: root
+    mode: 0440

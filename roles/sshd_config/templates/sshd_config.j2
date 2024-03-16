@@ -1,0 +1,58 @@
+# /etc/ssh/sshd_config
+
+# Порт, на котором слушает SSH
+Port 22
+
+# Протоколы, которые следует использовать
+Protocol 2
+
+# Имя файла, в который будет записываться ключевая информация
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Вероятность пересоздания ключа по умолчанию
+KeyRegenerationInterval 3600
+
+# Время ожидания для аутентификации
+LoginGraceTime 30
+
+# Разрешение или запрещение перенаправления X11
+X11Forwarding no
+
+# Разрешение или запрещение использования TCP-протокола для туннелирования
+AllowTcpForwarding no
+
+# Отключение вывода информации о версии SSH
+PrintMotd no
+
+# Отключение вывода информации о последнем входе пользователя
+PrintLastLog yes
+
+# Уровень журналирования
+LogLevel INFO
+
+# Поддержка протокола сжатия
+Compression no
+
+# Отключение автоматического завершения сеанса
+ClientAliveInterval 300
+ClientAliveCountMax 0
+
+# Файл, содержащий список пользователей, которым разрешено войти в систему
+AllowUsers username1 username2
+
+# Путь к файлу, содержащему ключи авторизации
+AuthorizedKeysFile	.ssh/authorized_keys
+
+# Отключение аутентификации root
+PermitRootLogin no
+
+# Разрешение или запрещение аутентификации по паролю
+PasswordAuthentication no
+
+# Разрешение или запрещение открытия сессии при неудачной аутентификации
+PermitEmptyPasswords no
+
+# Ограничение доступа к SSH на основе списка
+AllowUsers root ubuntu
