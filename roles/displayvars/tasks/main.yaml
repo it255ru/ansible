@@ -1,3 +1,37 @@
-- name: Display all variables/facts known for a host
-  debug:
-    var: hostvars[inventory_hostname]
+---
+- name: Gather system information
+  hosts: all
+  tasks:
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars[inventory_hostname]
+    - name: Show dns details in bulk
+      ansible.builtin.debug:
+        var: ansible_date_time
+    - name: 
+      ansible.builtin.debug:
+        var: ansible_env
+    - name: 
+      ansible.builtin.debug:
+        var: ansible_interfaces
+    - name:
+      ansible.builtin.debug:
+        var: ansible_default_ipv4
+    - name:
+      ansible.builtin.debug:
+        var: ansible_ens33
+    - name:
+      ansible.builtin.debug:
+        var: ansible_dns
+    - name:
+      ansible.builtin.debug:
+        var: ansible_fqdn
+    - name:
+      ansible.builtin.debug:
+        var: ansible_hostname
+    - name:
+      ansible.builtin.debug:
+        var: ansible_machine_id
+    - name:
+      ansible.builtin.debug:
+        var: ansible_nodename

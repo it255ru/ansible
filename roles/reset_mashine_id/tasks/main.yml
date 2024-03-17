@@ -1,0 +1,24 @@
+---
+- name: Reset machine_id
+  hosts: all
+  become: yes
+  tasks:
+    - name: Backup machine-id file
+      ansible.builtin.copy:
+        src: /etc/machine-id
+        dest: /etc/machine-id.backup
+        remote_src: yes
+
+    - name: Remove machine-id file
+      ansible.builtin.file:
+        path: /etc/machine-id
+        state: absent
+
+    - name: Generate new machine-id
+      ansible.builtin.command: dbus-uuidgen --ensure
+      args:
+        creates: /etc/machine-id
+
+    - name:
+      ansible.builtin.debug:
+        var: ansible_machine_id

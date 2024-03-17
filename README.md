@@ -98,35 +98,35 @@ ff02::2 ip6-allrouters
 
 ---
 
-## Описание стенда VmWare
+## Описание стенда Windows + VmWare PRO 16
 1. Windwos: 8vCPU (+ht) + 32 gb ram + ssd 500 GB 
 2. Windwos: VmWare Workstation PRO 16
 3. Windwos: Termius ssh client + ssh key
 4. С Windows раскидываются ключи на все VM стенда гипервизора и добавляются в termius
 5. termius синхронизируется с другими устройствами, VScode с подключением по ssh к хостам кластера, OpenLens для управления кластером
 6. VM скачивается тут: https://www.linuxvmimages.com/images/ubuntuserver-2204/
+7. В `c:\windows\system32\drivers\etc\hosts` добавить информацию из `windows-etc-hosts/hosts`
 
 ## Подготовка эталонной VM 
-1. Создаем новую VM в VmWare и подкладываем .vmdk и .vmx из скаченного 7z архива на 500 gb ssd стенда Windows
-2. Учетная запись `ubuntu:ubuntu` 
-3. В `/etc/ssh/sshd_config` заменить на `yes` параметр `PasswordAuthentication`
-4. `ip a` запоминаем ip
+1. Создаем новую VM в VmWare и подкладываем .vmdk и .vmx из скаченного 7z архива на стенда Windows
+2. Учетная запись `ubuntu:ubuntu` для первой авторизации
+3. В `/etc/ssh/sshd_config` заменить на `yes` параметра `PasswordAuthentication`
+4. `ip a` и запоминаем ip
 5. `sudo reboot` и можно подключится теперь с Termius ssh client стенда на windows
 
-### Подготовка эталонной VM c стенда на windows
-1. В `c:\windows\system32\drivers\etc\hosts` добавить информацию из `windows-etc-hosts/hosts`
-2. `ssh-copy-id ubuntu@k8sinfra01`
-3. `ssh ubuntu@k8sinfra01` Пароль: `ubuntu`
-4. `sudo -i` & `apt update -y` & `apt upgrade -y`
-5. `mv /etc/machine-id /etc/machine-id.bak ` & `dbus-uuidgen --ensure=/etc/machine-id` & `reboot`
-6. `apt install git` & `git clone %THIS_REPOSITORY%` & `cd %THIS_REPOSITORY%`
-7. `sudo sh install-ansible.sh`
+### Продолжаем подготовку эталонной VM c стенда на windows
+1. `ssh-copy-id ubuntu@k8sinfra01`
+2. `ssh ubuntu@k8sinfra01` Пароль: `ubuntu`
+3. `sudo -i` & `apt update -y` & `apt upgrade -y`
+4. `mv /etc/machine-id /etc/machine-id.bak ` & `dbus-uuidgen --ensure=/etc/machine-id` & `reboot`
+5. `apt install git` & `git clone %THIS_REPOSITORY%` & `cd %THIS_REPOSITORY%`
+6. `sudo sh install-ansible.sh`
 8. `ansible-playbook -i localhost getinfo.yml`
    
    
-6. Редактируем `./inventory/all-hosts`.
-7. 
-8.  `ansible-playbook -i inventory/all-hosts getinfo.yml`
+9. Редактируем `./inventory/all-hosts`.
+10. 
+11. `ansible-playbook -i inventory/all-hosts getinfo.yml`
 
 Reset machine_id
 
