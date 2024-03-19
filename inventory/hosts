@@ -1,0 +1,15 @@
+kubernetes-cluster/
+│
+├── roles/
+│   ├── masters/
+│   ├── workers/
+│   ├── ingress_controllers/
+│   └── load_balancers/
+│
+├── inventory/
+│   └── hosts
+│
+├── playbooks/
+│   └── site.yml
+│
+└── ansible.cfg

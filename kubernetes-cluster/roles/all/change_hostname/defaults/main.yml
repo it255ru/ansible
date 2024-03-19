@@ -1,0 +1,13 @@
+k8singress01:
+  ubuntu20_04:
+    hostname01: "k8singress01"
+    ipv4: "192.168.2.190/24"
+    nameservers: "192.168.2.1"
+    gw: "192.168.2.1"
+
+k8singress02:
+  ubuntu22_04:
+    hostname01: "k8singress02"
+    ipv4: "192.168.2.180/24"
+    nameservers: "192.168.2.1"
+    gw: "192.168.2.1"

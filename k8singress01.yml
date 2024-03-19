@@ -1,0 +1,15 @@
+- hosts: '{{ target }}'
+  tasks:
+   - name: ping all hosts
+     ping: ~
+     become: true
+     become_user: root
+  roles:
+    # 1. Разведка. Собираем информацию о хосте
+    - displayvars
+    # 2. Update apt package, Install some utils, Remove cloud-init
+    - update_hostname
+    # 3. Change SSHD Config
+    - sshd_config
+    # 4. Change Network settings
+    - update_network_settings

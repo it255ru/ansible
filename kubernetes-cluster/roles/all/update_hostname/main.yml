@@ -1,0 +1,39 @@
+---
+- name: Install and configure prerequisites
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - atop
+        - wget
+        - curl
+        - vim
+        - net-tools
+
+    - name: Configure cloud-init
+      block:
+        - name: Set datasource_list to None
+          shell: echo 'datasource_list: [ None ]' | tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
+
+        - name: Remove cloud-init
+          apt:
+            name: cloud-init
+            state: absent
+
+        - name: Remove cloud-init directories
+          file:
+            path: "{{ item }}"
+            state: absent
+          loop:
+            - /etc/cloud/
+            - /var/lib/cloud/
+      become: yes
+      when: ansible_distribution == 'Ubuntu'  # Проверка только для Ubuntu

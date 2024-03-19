@@ -1,0 +1,32 @@
+# change_hostname_and_network.yml
+
+- name: Change hostname and network settings
+  hosts: all
+  become: yes
+  vars:
+    hostname_settings: "{{ k8singress01['ubuntu22_04'] }}"
+  tasks:
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname_settings.hostname01 }}"
+
+    - name: Update /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ hostname_settings.hostname01 }}"
+        block: |
+          127.0.0.1   localhost
+          ::1         localhost ip6-localhost ip6-loopback
+          ff02::1     ip6-allnodes
+          ff02::2     ip6-allrouters
+          127.0.1.1   {{ hostname_settings.hostname01 }}
+
+    - name: Configure network settings
+      ansible.builtin.template:
+        src: network_config.j2
+        dest: /etc/netplan/01-network-manager-all.yaml
+      notify: Apply network configuration
+
+  handlers:
+    - name: Apply network configuration
+      ansible.builtin.command: netplan apply

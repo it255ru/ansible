@@ -15,7 +15,7 @@
 |Control plane nodes (Masters)|k8smaster03.home.lab|192.168.2.43|Ubuntu 22|2G|2|
 |Worker node machines (Data plane)|k8sworker01.home.lab|192.168.2.44|Ubuntu 22|2G|2|
 |Worker node machines (Data plane)|k8sworker02.home.lab|192.168.2.45|Ubuntu 22|2G|2|
-|Ingress|k8singress01.home.lab|192.168.2.61|Ubuntu 22|2G|2|
+|Ingress|k8singress01.home.lab|192.168.2.190|Ubuntu 20|2G|2|
 
 |Username|Password|Description|
 |----|----|----|
