@@ -1,10 +1,10 @@
 # Checklist
 
 ## INternal: DNS | DHCP | GATEWAY
-- [ ] DHCP 192.168.2.0/24
-- [ ] Gateway: 192.168.2.1
-- [ ] DNS(Nameservice): 192.168.2.1
-- [ ] DNS-resolv: home.lab
+- [x] DHCP 192.168.2.0/24
+- [x] Gateway: 192.168.2.1
+- [x] DNS(Nameservice): 192.168.2.1
+- [x] DNS-resolv: home.lab
 
 ## Wndows | Vmware | Dev-tools
 - [x] OS: Windows 10
@@ -13,21 +13,18 @@
   - [x] Создал 1 Infra vm
   - [x] Создал 3 Master vm
   - [x] Создал 2 Worker vm
-  - [ ] Создал 2 Ingress vm
-  - [ ] Создал 2 Load balancer vm
+  - [x] Создал 1 Ingress vm
 - [x] Изменен etc/hosts
-- [ ] Создал ssh-ключ
+- [x] Создал ssh-ключ
   - [x] Распостранил на Infra vm
   - [x] Распостранил на Master vm
   - [x] Распостранил на Worker vm
-  - [ ] Распостранил на Ingress vm
-  - [ ] Распостранил на Load balancer vm
+  - [x] Распостранил на Ingress vm
 - [ ] Termius
   - [x] Подключил Infra vm
   - [x] Подключил Master vm
   - [x] Подключил Worker vm
   - [ ] Подключил Ingress vm
-  - [ ] Подключил Load balancer vm
 - [ ] VScode
   - [x] Подключил Github
   - [ ] Подключил Infra vm
@@ -53,8 +50,7 @@
   - [x] Создал ssh-ключ
     - [x] Распостранил на Master vm
     - [x] Распостранил на Worker vm
-    - [ ] Распостранил на Ingress vm
-    - [ ] Распостранил на Load balancer vm
+    - [x] Распостранил на Ingress vm
 - [ ] Персональные настройки
   - [x] .gitconfig для github
   - [ ] База KeePass для паролей, ключей и tls-сертефикатов
@@ -112,32 +108,14 @@
 
 ## Ingress vm
 - [ ] Стандартные настройки
-  - [ ] Изменил hostname
-  - [ ] Изменил настройки сети на статику
-  - [ ] Проверил доступ в интернет
-  - [ ] Обновил ОС
-  - [ ] Создал новый hardware id
-  - [ ] Изменил настройки sshd.service
+  - [x] Изменил hostname
+  - [x] Изменил настройки сети на статику
+  - [x] Проверил доступ в интернет
+  - [x] Обновил ОС
+  - [x] Создал новый hardware id
+  - [x] Изменил настройки sshd.service
   - [ ] Создал УЗ ansible
-  - [ ] Отключил авторизацию root
-  - [ ] Установил master-tools
-  - [ ] Удалил swap
-  - [ ] Отключил selinux
-  - [ ] Отключил ufw
-  - [ ] Внес изменения в сетевые настройки
-  - [ ] Внес изменения в работу ядра
-  - [ ] 
-
-## Load balancer vm
-- [ ] Стандартные настройки
-  - [ ] Изменил hostname
-  - [ ] Изменил настройки сети на статику
-  - [ ] Проверил доступ в интернет
-  - [ ] Обновил ОС
-  - [ ] Создал новый hardware id
-  - [ ] Изменил настройки sshd.service
-  - [ ] Создал УЗ ansible
-  - [ ] Отключил авторизацию root
+  - [x] Отключил авторизацию root
   - [ ] Установил master-tools
   - [ ] Удалил swap
   - [ ] Отключил selinux
