@@ -1,0 +1,28 @@
+Port 22
+Protocol 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+KeyRegenerationInterval 3600
+LoginGraceTime 30
+PermitRootLogin no
+PasswordAuthentication yes
+PermitEmptyPasswords no
+X11Forwarding no
+AllowTcpForwarding no
+PrintMotd no
+PrintLastLog yes
+LogLevel INFO
+Compression no
+ClientAliveInterval 300
+ClientAliveCountMax 0
+AuthorizedKeysFile .ssh/authorized_keys
+AllowUsers root ubuntu
+
+Subsystem sftp /usr/lib/openssh/sftp-server
+Match Group sftp
+    ChrootDirectory %h
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
+    X11Forwarding no
+    PasswordAuthentication yes
