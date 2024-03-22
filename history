@@ -1,0 +1,32 @@
+    1  apt-get update
+    2  apt-get install atop wget ntp vim net-tools -y
+    3  atop
+    4  sudo systemctl stop snapd
+    5  sudo systemctl disable snapd
+    6  sudo systemctl stop cloud-final
+    7  sudo systemctl disable cloud-final
+    8  sudo systemctl stop cloud-config
+    9  sudo systemctl disable cloud-config
+   10  sudo systemctl stop cloud-init-local
+   11  sudo systemctl disable cloud-init-local
+   12  sudo systemctl stop cloud-init
+   13  sudo systemctl disable cloud-init
+   14  sudo systemctl stop NetworkManager
+   15  sudo systemctl disable NetworkManager
+   16  sudo swapoff -a
+   17  vi /etc/fstab
+   18  sudo reboot
+   19  sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+   20  cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+overlay
+br_netfilter
+EOF
+
+   21  cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+
+   22  sudo sysctl --system
+   23  sudo apt install curl wget net-tools iproute2 openssh-server
