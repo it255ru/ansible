@@ -1,3 +1,9 @@
+[bastion]
+bastion ansible_host=bastion.example.lab
+
+[bastion:vars]
+ansible_user=ubuntu
+
 [group_k8smaster]
 master1 ansible_host=k8master1
 
