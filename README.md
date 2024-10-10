@@ -9,12 +9,6 @@ This project contains [ansible](http://docs.ansible.com/ansible) playbook to ins
  - Install ansible on your computer `pip install ansible`, by default it installs in `/home/$USER/.local`.                                          
  - Clone this project
  - Edit the [`envs/hosts`](envs/hosts) file and enter the FQDN or IP address of the server you are deploying to.
- - Run the playbook for all vm :
-
-      ```
-      cd ansible
-      ansible-playbook -i envs/ playbook.yaml -K -v
-      ```
       
  - Run the playbook for group vm :
 
